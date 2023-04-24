@@ -6,3 +6,8 @@
 git branch -M <branch-name>
 git push origin <branch-name>
 ```
+
+## Change branch
+```
+git checkout <branch-name>
+```
