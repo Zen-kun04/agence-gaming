@@ -7,7 +7,12 @@ git branch -M <branch-name>
 git push origin <branch-name>
 ```
 
-## Change branch
+## Change branch (never be in "main" branch)
 ```
 git checkout <branch-name>
+```
+
+## Update your files
+```
+git pull
 ```
