@@ -12,11 +12,16 @@
 </head>
 <body>
     <header>
-
+        <a href="./components/competition.php">competition</a>
+        <a href="./components/game.php">game</a>
+        <a href="./components/player.php">player</a>
+        <a href="./components/sponsor.php">sponsor</a>
+        <a href="./components/team.php">team</a>
+        <a href="./components/team_competition.php">team_competition</a>
     </header>
     <main>
         <div id="container">
-            
+
         </div>
     </main>
 </body>
