@@ -11,6 +11,13 @@
     <title>Agence Gaming</title>
 </head>
 <body>
-    
+    <header>
+
+    </header>
+    <main>
+        <div id="container">
+            
+        </div>
+    </main>
 </body>
 </html>
