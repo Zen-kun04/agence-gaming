@@ -21,10 +21,10 @@
     <input type="text" name="name" id="name">
 
     <label for="station"></label>
-    <input type="text" name="station" id="name">
+    <input type="text" name="station" id="station">
     
     <label for="format"></label>
-    <input type="text" name="format" id="name">
+    <input type="text" name="format" id="format">
 
     <input type="submit" value="Confirmer">
 </form>
