@@ -1,8 +1,21 @@
 <?php
-    if(isset($_POST["name"]) && isset($_POST["station"]) && isset($_POST["format"])){
-        echo($_POST["name"]);
-        echo($_POST["station"]);
-        echo($_POST["format"]);
+    $mysql = new PDO(
+        'mysql:host=localhost;dbname=gaming;charset=utf8',
+        'root',
+        'root'
+    );
+
+    if(!empty($_POST["name"]) && !empty($_POST["station"]) && !empty($_POST["format"])){
+        $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
+        $name = $_POST["name"];
+        $station = $_POST["station"];
+        $format = $_POST["format"];
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':station', $station);
+        $statement->bindValue(':format', $format);
+        $statement->execute();
+        
+        
     }
 ?>
 
@@ -14,6 +27,19 @@
         <th>Format</th>
     </tr>
     <!-- Add rows here -->
+    <?php
+        $statement = $mysql->prepare("SELECT * FROM Game");
+        $statement->execute();
+        foreach ($statement->fetchAll() as $key => $value) {
+            # code...
+            echo("<tr>");
+            echo("<th>" . $value["id"] . "</th>");
+            echo("<td>" . $value["name"] . "</td>");
+            echo("<td>" . $value["station"] . "</td>");
+            echo("<td>" . $value["format"] . "</td>");
+            echo("</tr>");
+        }
+    ?>
 </table>
 
 <form action="/components/game.php" method="post">
