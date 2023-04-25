@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST["name"]) && isset($_POST["description"])){
+    if(!empty($_POST["name"]) && !empty($_POST["description"])){
         echo($_POST["name"]);
         echo($_POST["description"]);
     }

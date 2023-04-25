@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="../style.css">
 <header class="header">
     <!-- <a href="#">Accueil</a> -->
-    <button class="accueilBtn">Accueil</button>
+    <button class="accueilBtn"><a href="../">Accueil</a></button>
+    
 
     <nav class="navbar">
         <ul>
@@ -13,3 +14,4 @@
         </ul>
     </nav>
 </header>
+
