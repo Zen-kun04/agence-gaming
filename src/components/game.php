@@ -1,4 +1,6 @@
 <?php
+    include("./manager.php");
+    $manager = new DBManager();
     $mysql = new PDO(
         'mysql:host=localhost;dbname=gaming;charset=utf8',
         'root',
@@ -6,14 +8,14 @@
     );
 
     if(!empty($_POST["name"]) && !empty($_POST["station"]) && !empty($_POST["format"])){
-        $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
-        $name = $_POST["name"];
-        $station = $_POST["station"];
-        $format = $_POST["format"];
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':station', $station);
-        $statement->bindValue(':format', $format);
-        $statement->execute();
+        // $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
+        // $name = $_POST["name"];
+        // $station = $_POST["station"];
+        // $format = $_POST["format"];
+        // $statement->bindValue(':name', $name);
+        // $statement->bindValue(':station', $station);
+        // $statement->bindValue(':format', $format);
+        // $statement->execute();
         
         
     }
@@ -28,8 +30,7 @@
     </tr>
     <!-- Add rows here -->
     <?php
-        $statement = $mysql->prepare("SELECT * FROM Game");
-        $statement->execute();
+        $statement = $manager->getAllFromGame();
         foreach ($statement->fetchAll() as $key => $value) {
             # code...
             echo("<tr>");
