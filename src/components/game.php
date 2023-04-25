@@ -2,6 +2,7 @@
     include("./navbar.php");
     include("./managers/DBManager.php");
     include("./managers/GameManager.php");
+    $manager = new GameManager();
     class Game {
         private $id;
         private $name;
@@ -37,7 +38,7 @@
         }
 
         public function setFormat(string $format) {
-            $this->$format = $format;
+            $this->format = $format;
         }
     }
 
@@ -52,9 +53,11 @@
 
     if(!empty($_POST["name"]) && !empty($_POST["station"]) && !empty($_POST["format"])){
         // $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
-        // $name = $_POST["name"];
-        // $station = $_POST["station"];
-        // $format = $_POST["format"];
+        $name = $_POST["name"];
+        $station = $_POST["station"];
+        $format = $_POST["format"];
+        
+        $manager->createGame($name, $station, $format);
         // $statement->bindValue(':name', $name);
         // $statement->bindValue(':station', $station);
         // $statement->bindValue(':format', $format);
@@ -63,7 +66,7 @@
         
     }
 ?>
-
+<link rel="stylesheet" href="../table.css">
 <table>
     <tr>
         <th>#</th>
@@ -74,7 +77,7 @@
     <!-- Add rows here -->
     <?php
     
-        $manager = new GameManager();
+        
         $game = new Game();
         $statement = $manager->getAllGames();
         foreach ($statement as $key => $value) {
