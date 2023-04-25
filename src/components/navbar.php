@@ -1,5 +1,6 @@
 <header class="header">
-    <a href="#">Accueil</a>
+    <!-- <a href="#">Accueil</a> -->
+    <button class="accueilBtn">Accueil</button>
 
     <nav class="navbar">
         <ul>
@@ -11,4 +12,3 @@
         </ul>
     </nav>
 </header>
-
