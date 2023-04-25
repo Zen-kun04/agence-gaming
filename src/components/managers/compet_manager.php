@@ -18,5 +18,19 @@
             }
             return $competitions;
         }
-    }
+
+
+        public function createCompet(string $name, string $description, string $city, string $format, int $cash_prize) {
+            $prepare = $this->getConnection()->prepare("INSERT INTO `Competition` (name, description, city, format, cash_prize) VALUES
+            (:name, :description, :city, :format, :cash_prize);");
+            $prepare->bindValue(":name", $name);
+            $prepare->bindValue(":description", $description);
+            $prepare->bindValue(":city", $city);
+            $prepare->bindValue(":format", $format);
+            $prepare->bindValue(":cash_prize", $cash_prize);
+            $prepare->execute();
+        }
+
+
+    }    
 ?>
