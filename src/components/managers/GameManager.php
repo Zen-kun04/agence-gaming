@@ -14,5 +14,14 @@
             }
             return $games;
         }
+
+        public function createGame(string $name, string $station, string $format) {
+            $prepare = $this->getConnection()->prepare("INSERT INTO `Game` (name, station, format) VALUES
+            (:name, :station, :format);");
+            $prepare->bindValue(":name", $name);
+            $prepare->bindValue(":station", $station);
+            $prepare->bindValue(":format", $format);
+            $prepare->execute();
+        }
     }
 ?>
