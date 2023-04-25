@@ -3,7 +3,7 @@
     class PlayerManager extends DBManager {
 
         public function getAllPlayers() {
-            $prepare = $this->getConnection()->query("SELECT * FROM `players`");
+            $prepare = $this->getConnection()->query("SELECT * FROM `Player`");
             $players = [];
             foreach($prepare as $playerData) {
                 $player = new Player();
