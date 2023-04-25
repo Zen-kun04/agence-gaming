@@ -19,6 +19,12 @@ body {
     align-items: center;
 
     position: fixed;
+
+    margin-bottom: 20px;
+}
+
+table {
+    padding-top: 100px;
 }
 
 .accueilBtn {

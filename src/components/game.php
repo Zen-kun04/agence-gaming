@@ -1,11 +1,54 @@
 <?php
-    include("./manager.php");
-    $manager = new DBManager();
-    $mysql = new PDO(
-        'mysql:host=localhost;dbname=gaming;charset=utf8',
-        'root',
-        'root'
-    );
+    include("./navbar.php");
+    include("./managers/DBManager.php");
+    include("./managers/GameManager.php");
+    class Game {
+        private $id;
+        private $name;
+        private $station;
+        private $format;
+
+        public function getID() {
+            return $this->id;
+        }
+
+        public function setID(int $id){
+            $this->id = $id;
+        }
+
+        public function getName() {
+            return $this->name;
+        }
+
+        public function setName(string $name) {
+            $this->name = $name;
+        }
+
+        public function getStation() {
+            return $this->station;
+        }
+
+        public function setStation(string $station) {
+            $this->station = $station;
+        }
+
+        public function getFormat() {
+            return $this->format;
+        }
+
+        public function setFormat(string $format) {
+            $this->$format = $format;
+        }
+    }
+
+
+    // include("./manager.php");
+    // $manager = new DBManager();
+    // $mysql = new PDO(
+    //     'mysql:host=localhost;dbname=gaming;charset=utf8',
+    //     'root',
+    //     'root'
+    // );
 
     if(!empty($_POST["name"]) && !empty($_POST["station"]) && !empty($_POST["format"])){
         // $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
@@ -30,14 +73,17 @@
     </tr>
     <!-- Add rows here -->
     <?php
-        $statement = $manager->getAllFromGame();
-        foreach ($statement->fetchAll() as $key => $value) {
+    
+        $manager = new GameManager();
+        $game = new Game();
+        $statement = $manager->getAllGames();
+        foreach ($statement as $key => $value) {
             # code...
             echo("<tr>");
-            echo("<th>" . $value["id"] . "</th>");
-            echo("<td>" . $value["name"] . "</td>");
-            echo("<td>" . $value["station"] . "</td>");
-            echo("<td>" . $value["format"] . "</td>");
+            echo("<th>" . $value->getID() . "</th>");
+            echo("<td>" . $value->getName() . "</td>");
+            echo("<td>" . $value->getStation() . "</td>");
+            echo("<td>" . $value->getFormat() . "</td>");
             echo("</tr>");
         }
     ?>
