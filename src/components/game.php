@@ -1,8 +1,6 @@
 <?php
-    include_once("./navbar.php");
-    include_once(__DIR__ . "/managers/DBManager.php");
-    include_once("./managers/GameManager.php");
-    include_once("./classes/gameC.php");
+    require_once("./navbar.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
     $manager = new GameManager();
     
 
@@ -33,8 +31,7 @@
         $manager->deleteGameById($id);
     }
 ?>
-<link rel="stylesheet" href="../table.css">
-<link rel="stylesheet" href="../main.css">
+<link rel="stylesheet" href="../style.css">
 <main>
     <table>
         <tr>

@@ -1,7 +1,6 @@
 <?php
-    include("./navbar.php");
-    include("./managers/DBManager.php");
-    include("./managers/compet_manager.php");
+    require_once("./navbar.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
 class Competition {
         private $id;
         private $name;

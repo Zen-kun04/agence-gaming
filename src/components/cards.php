@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./cards.css">
+<link rel="stylesheet" href="./style.css">
 
 <div class="cards">
 

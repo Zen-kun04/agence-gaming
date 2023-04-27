@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../style.css">
 <header class="header">
     <button class="accueilBtn"><a href="../">Accueil</a></button>
     

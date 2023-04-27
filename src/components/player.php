@@ -1,9 +1,7 @@
 <?php
-    include_once("./navbar.php");
-    include_once(__DIR__ . "/managers/DBManager.php");
-    include_once("./managers/PlayerManager.php");
-    include_once("./managers/GameManager.php");
-    include_once("./managers/TeamManager.php");
+    require_once("./navbar.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
+    
     $manager = new PlayerManager();
     class Player {
         
@@ -89,7 +87,7 @@
 
 ?>
 
-<link rel="stylesheet" href="../table.css">
+<link rel="stylesheet" href="../style.css">
 <table>
     <tr>
         <th>#</th>
@@ -98,6 +96,8 @@
         <th>City</th>
         <th>Team #</th>
         <th>Game #</th>
+        <th>Delete</th>
+        <th>Edit</th>
     </tr>
     <!-- Add rows here -->
     <?php
@@ -105,7 +105,8 @@
         
         $player = new Player();
         $statement = $manager->getAllPlayers();
-        $team = new Team();
+        $team_manager = new TeamManager();
+        $game_manager = new GameManager();
         
         foreach ($statement as $key => $value) {
             # code...
@@ -114,8 +115,10 @@
             echo("<td>" . $value->getFirstName() . "</td>");
             echo("<td>" . $value->getSecondName() . "</td>");
             echo("<td>" . $value->getCity() . "</td>");
-            echo("<td>" . $value->getTeamID() . "</td>");
-            echo("<td>" . $value->getGameID() . "</td>");
+            echo("<td>" . $team_manager->getTeamByID($value->getTeamID())->getName() . "</td>");
+            echo("<td>" . $game_manager->getGameByID($value->getGameID())->getName() . "</td>");
+            echo("<td>" . "X" . "</td>");
+            echo("<td>" . "<a href='/components/edit.php?player=" . $value->getID() . "'>Edit</a>" . "</td>");
             echo("</tr>");
         }
     ?>

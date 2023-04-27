@@ -34,7 +34,7 @@ main form input[type="submit"] {
     background-size: 800px;
     color: #FFFFFF;
     border: none;
-    transition: background-position-x ease-out 800ms, border-radius linear 300ms;
+    transition: background-position-x ease-out 800ms, border-radius linear 300ms, letter-spacing 0.5s;
 }
 
 main form input[type="submit"]:hover{
