@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "/../classes/teamC.php");
+include_once(__DIR__ . "/DBManager.php");
 class TeamManager extends DBManager
 {
     public function getAllTeams()
