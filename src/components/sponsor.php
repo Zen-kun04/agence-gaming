@@ -1,7 +1,7 @@
 <?php
 
-include('./navbar.php');
-include('./managers/DBManager.php');
+require_once('./navbar.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
 
 class Sponsor
 {

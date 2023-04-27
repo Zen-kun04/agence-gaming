@@ -1,5 +1,5 @@
 <?php
-    include_once(__DIR__ . "/../classes/gameC.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
     class GameManager extends DBManager {
         public function getAllGames() {
             $prepare = $this->getConnection()->query("SELECT * FROM `Game`");
@@ -14,6 +14,28 @@
                 $games[] = $game;
             }
             return $games;
+        }
+
+        public function getGameByID(int $id) {
+            
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Game WHERE id = ?;");
+            $prepare->execute([
+                $id
+            ]);
+
+
+
+
+
+            foreach ($data as $key => $value) {
+                $game = new Game();
+                $game->setID($value["id"]);
+                $game->setName($value["name"]);
+                $game->setStation($value["station"]);
+                $game->setFormat($value["format"]);
+                return $game;
+            }
+            return null;
         }
 
         public function getAllStations(){

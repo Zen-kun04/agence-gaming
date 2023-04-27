@@ -1,6 +1,5 @@
 <?php
-include_once(__DIR__ . "/../classes/teamC.php");
-include_once(__DIR__ . "/DBManager.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
 class TeamManager extends DBManager
 {
     public function getAllTeams()
@@ -19,11 +18,18 @@ class TeamManager extends DBManager
     }
 
     public function getTeamByID(int $id) {
-        $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Team WHERE id = ?");
+        $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Team WHERE id = ?;");
         $prepare->execute([
             $id
         ]);
-        return $data;
+        foreach ($data as $key => $value) {
+            $team = new Team();
+            $team->setId($value["id"]);
+            $team->setName($value["name"]);
+            $team->setDescription($value["description"]);
+            return $team;
+        }
+        return null;
     }
 
     public function createTeam(string $name, string $description){

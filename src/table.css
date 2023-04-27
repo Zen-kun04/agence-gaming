@@ -70,7 +70,7 @@ input[type="submit"] {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0px;
-    transition: 0.5s;
+    transition: all 0.5s;
 }
 
 input[type="submit"]:hover {

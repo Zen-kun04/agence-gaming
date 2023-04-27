@@ -1,5 +1,5 @@
 <?php
-
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
     class PlayerManager extends DBManager {
 
         public function getAllPlayers() {
@@ -24,6 +24,15 @@
             $prepare->execute([
                 $id
             ]);
+        }
+
+        public function playerExist(int $id) {
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM `Player` WHERE id = ?");
+            $prepare->execute([
+                $id
+            ]);
+
+            return !empty($data->fetch());
         }
 
         public function createPlayer(string $first_name, string $second_name, string $city, int $team_id, int $game_id) {

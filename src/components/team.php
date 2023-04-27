@@ -1,9 +1,7 @@
 <?php
 
-include_once('./navbar.php');
-include_once(__DIR__ . "/managers/TeamManager.php");
-include_once(__DIR__ . "/managers/DBManager.php");
-include_once("./classes/teamC.php");
+require_once('./navbar.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
 $manager = new TeamManager();
 
 
@@ -21,7 +19,7 @@ if (!empty($_POST["name"]) && !empty($_POST["description"])) {
 
 
 ?>
-<link rel="stylesheet" href="../table.css">
+<link rel="stylesheet" href="../style.css">
 <table>
     <tr>
         <th>#</th>
