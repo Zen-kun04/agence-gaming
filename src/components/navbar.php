@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="../style.css">
 <header class="header">
-    <!-- <a href="#">Accueil</a> -->
     <button class="accueilBtn"><a href="../">Accueil</a></button>
     
 
