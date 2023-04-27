@@ -93,13 +93,13 @@
 </table>
 
 <form action="/components/game.php" method="post">
-    <label for="name"></label>
+    <label for="name">Titre</label>
     <input type="text" name="name" id="name">
 
-    <label for="station"></label>
+    <label for="station">Plateforme</label>
     <input type="text" name="station" id="station">
     
-    <label for="format"></label>
+    <label for="format">Genre</label>
     <input type="text" name="format" id="format">
 
     <input type="submit" value="Confirmer">

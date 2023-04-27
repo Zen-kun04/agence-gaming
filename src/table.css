@@ -1,4 +1,15 @@
+body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+
+
+/* TABLEAU DES DONNÉES */
 table {
+    width: 66%;
     margin-left: 20px;
     padding-top: 80px;
     color: white;
@@ -19,4 +30,52 @@ th {
     font-weight: bold;
     color: rgb(0, 225, 255);
     text-align: center;
+}
+
+
+
+
+/* FORMULAIRE DE SOUMISSION */
+form {
+    margin-right: 20px;
+    width: 200px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+label {
+    color: white;
+    font-family: sans-serif;
+    margin-bottom: -10px;
+    background-color: #ffffff22;
+    padding: 5px;
+}
+
+input {
+    padding: 7px;
+
+}
+
+input[type="submit"] {
+    background: linear-gradient(to top, rgb(0, 90, 236), rgb(0, 176, 240));
+    padding: 15px;
+    border: none;
+    box-shadow: 0px 5px 10px 0px #00000088,0px -10px 10px -5px #00000000, inset 0px -20px 20px #00000000;
+    cursor: pointer;
+    color: white;
+    margin-top: 20px;
+    background: linear-gradient(to top, rgb(0, 69, 181), rgb(0, 176, 240));
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    transition: 0.5s;
+}
+
+input[type="submit"]:hover {
+    letter-spacing: 5px;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px 5px #00eaff88, 0px -10px 10px -5px #0056f4aa, inset 0px -20px 20px rgb(22, 255, 255);
 }
