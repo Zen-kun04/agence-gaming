@@ -1,1 +1,3 @@
 .vscode
+components/managers/DBManager.php
+root.session.sql

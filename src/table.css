@@ -1,8 +1,8 @@
 body {
     width: 100%;
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: start; */
 }
 
 
@@ -11,11 +11,12 @@ body {
 table {
     width: 66%;
     margin-left: 20px;
-    padding-top: 80px;
     color: white;
     font-family: sans-serif;
     font-weight: 500;
     border-spacing: 3px;
+    height: 80%;
+    margin-right: 26%;
 }
 
 th,
@@ -31,8 +32,6 @@ th {
     color: rgb(0, 225, 255);
     text-align: center;
 }
-
-
 
 
 /* FORMULAIRE DE SOUMISSION */
@@ -54,7 +53,7 @@ label {
     padding: 5px;
 }
 
-input {
+input, select {
     padding: 7px;
 
 }
