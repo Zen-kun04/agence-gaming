@@ -25,7 +25,7 @@ class TeamManager extends DBManager
         return $data;
     }
 
-    public function createTeam(string $name, string $descritpion){
+    public function createTeam(string $name, string $description){
         $prepare = $this->getConnection()->prepare("INSERT INTO `Team` (name, description) VALUES (:name, :description); ");
         $prepare->bindValue(":name", $name);
         $prepare->bindValue(":description", $description);
