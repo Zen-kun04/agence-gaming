@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__ . "/../classes/teamC.php");
 class TeamManager extends DBManager
 {
     public function getAllTeams()
@@ -16,8 +17,15 @@ class TeamManager extends DBManager
         return $teams;
     }
 
-    public function createTeam(string $name, string $description)
-    {
+    public function getTeamByID(int $id) {
+        $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Team WHERE id = ?");
+        $prepare->execute([
+            $id
+        ]);
+        return $data;
+    }
+
+    public function createTeam(string $name, string $descritpion){
         $prepare = $this->getConnection()->prepare("INSERT INTO `Team` (name, description) VALUES (:name, :description); ");
         $prepare->bindValue(":name", $name);
         $prepare->bindValue(":description", $description);

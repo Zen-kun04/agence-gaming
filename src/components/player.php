@@ -1,8 +1,12 @@
 <?php
-    include("./navbar.php");
-    include("./managers/DBManager.php");
-    include("./managers/PlayerManager.php");
+    include_once("./navbar.php");
+    include_once(__DIR__ . "/managers/DBManager.php");
+    include_once("./managers/PlayerManager.php");
+    include_once("./managers/GameManager.php");
+    include_once("./managers/TeamManager.php");
+    $manager = new PlayerManager();
     class Player {
+        
         private $id;
         private $first_name;
         private $second_name;
@@ -60,5 +64,97 @@
         }
     }
 
+    if(!empty($_POST["first_name"]) && !empty($_POST["second_name"]) && !empty($_POST["city"]) && !empty($_POST["team"]) && !empty($_POST["game"])){
+        // $statement = $mysql->prepare("INSERT INTO Game (name, station, format) VALUES (:name, :station, :format);");
+        $first_name = $_POST["first_name"];
+        $second_name = $_POST["second_name"];
+        $city = $_POST["city"];
+        $team_id = $_POST["team"];
+        $game_id = $_POST["game"];
+        // echo("Team: " . $team_id);
+        // echo("Game: " . $game_id);
+        $manager->createPlayer($first_name, $second_name, $city, intval($team_id), intval($game_id));
+        // $statement->bindValue(':name', $name);
+        // $statement->bindValue(':station', $station);
+        // $statement->bindValue(':format', $format);
+        // $statement->execute();
+        
+        
+    }else if(!empty($_GET["delete"])){
+        $id = $_GET["delete"];
+        $manager->deletePlayerById($id);
+    }else{
+        echo("Nope XD");
+    }
 
 ?>
+
+<link rel="stylesheet" href="../table.css">
+<table>
+    <tr>
+        <th>#</th>
+        <th>First name</th>
+        <th>Second name</th>
+        <th>City</th>
+        <th>Team #</th>
+        <th>Game #</th>
+    </tr>
+    <!-- Add rows here -->
+    <?php
+    
+        
+        $player = new Player();
+        $statement = $manager->getAllPlayers();
+        $team = new Team();
+        
+        foreach ($statement as $key => $value) {
+            # code...
+            echo("<tr>");
+            echo("<th>" . $value->getID() . "</th>");
+            echo("<td>" . $value->getFirstName() . "</td>");
+            echo("<td>" . $value->getSecondName() . "</td>");
+            echo("<td>" . $value->getCity() . "</td>");
+            echo("<td>" . $value->getTeamID() . "</td>");
+            echo("<td>" . $value->getGameID() . "</td>");
+            echo("</tr>");
+        }
+    ?>
+</table>
+
+<form action="/components/player.php" method="post">
+    <label for="first_name">First name</label>
+    <input type="text" name="first_name" id="first_name">
+    
+    <label for="second_name">Second name</label>
+    <input type="text" name="second_name" id="second_name">
+
+    <label for="city">City</label>
+    <input type="text" name="city" id="city">
+
+    <label for="team">Team</label>
+    <select name="team" id="team">
+        <?php
+            $team_manager = new TeamManager();
+            $teams = $team_manager->getAllTeams();
+            foreach ($teams as $key => $value) {
+                $name = $value->getName();
+                echo("<option value='" . $value->getID() . "'>" . $name . "</option>");
+            }
+        ?>
+    </select>
+    
+    <label for="game">Game</label>
+    <select name="game" id="game">
+        <?php
+        
+            $game_manager = new GameManager();
+            $games = $game_manager->getAllGames();
+            foreach ($games as $key => $value) {
+                $name = $value->getName();
+                echo("<option value='" . $value->getID() . "'>" . $name . "</option>");
+            }
+        ?>
+    </select>
+
+    <input type="submit" value="Confirmer">
+</form>
