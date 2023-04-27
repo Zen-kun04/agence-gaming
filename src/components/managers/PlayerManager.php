@@ -19,7 +19,16 @@
             return $players;
         }
 
+        public function deletePlayerById(int $id) {
+            $prepare = $this->getConnection()->prepare("DELETE FROM `Player` WHERE id = ?");
+            $prepare->execute([
+                $id
+            ]);
+        }
+
         public function createPlayer(string $first_name, string $second_name, string $city, int $team_id, int $game_id) {
+            // echo("Team: " . $team_id);
+            // echo("Game: " . $game_id);
             $prepare = $this->getConnection()->prepare("INSERT INTO `Player` (first_name, second_name, city, team_id, game_id)
             VALUES
             (:first_name, :second_name, :city, :team_id, :game_id);");
@@ -28,7 +37,7 @@
             $prepare->bindValue(":city", $city);
             $prepare->bindValue(":team_id", $team_id);
             $prepare->bindValue(":game_id", $game_id);
-
+            
             $prepare->execute();
         }
     }

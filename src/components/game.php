@@ -1,46 +1,10 @@
 <?php
-    include("./navbar.php");
-    include("./managers/DBManager.php");
-    include("./managers/GameManager.php");
+    include_once("./navbar.php");
+    include_once(__DIR__ . "/managers/DBManager.php");
+    include_once("./managers/GameManager.php");
+    include_once("./classes/gameC.php");
     $manager = new GameManager();
-    class Game {
-        private $id;
-        private $name;
-        private $station;
-        private $format;
-
-        public function getID() {
-            return $this->id;
-        }
-
-        public function setID(int $id){
-            $this->id = $id;
-        }
-
-        public function getName() {
-            return $this->name;
-        }
-
-        public function setName(string $name) {
-            $this->name = $name;
-        }
-
-        public function getStation() {
-            return $this->station;
-        }
-
-        public function setStation(string $station) {
-            $this->station = $station;
-        }
-
-        public function getFormat() {
-            return $this->format;
-        }
-
-        public function setFormat(string $format) {
-            $this->format = $format;
-        }
-    }
+    
 
 
     // include("./manager.php");
@@ -64,43 +28,72 @@
         // $statement->execute();
         
         
+    }else if(!empty($_GET["delete"])){
+        $id = $_GET["delete"];
+        $manager->deleteGameById($id);
     }
 ?>
 <link rel="stylesheet" href="../table.css">
-<table>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Station</th>
-        <th>Format</th>
-    </tr>
-    <!-- Add rows here -->
-    <?php
-    
+<link rel="stylesheet" href="../main.css">
+<main>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Station</th>
+            <th>Format</th>
+            <th>Suppression</th>
+            <th>Edition</th>
+        </tr>
+        <!-- Add rows here -->
+        <?php
         
-        $game = new Game();
-        $statement = $manager->getAllGames();
-        foreach ($statement as $key => $value) {
-            # code...
-            echo("<tr>");
-            echo("<th>" . $value->getID() . "</th>");
-            echo("<td>" . $value->getName() . "</td>");
-            echo("<td>" . $value->getStation() . "</td>");
-            echo("<td>" . $value->getFormat() . "</td>");
-            echo("</tr>");
-        }
-    ?>
-</table>
+            
+            $game = new Game();
+            $statement = $manager->getAllGames();
+            foreach ($statement as $key => $value) {
+                # code...
+                echo("<tr>");
+                echo("<th>" . $value->getID() . "</th>");
+                echo("<td>" . $value->getName() . "</td>");
+                echo("<td>" . $value->getStation() . "</td>");
+                echo("<td>" . $value->getFormat() . "</td>");
+                echo("<td>" . "<a href='/components/game.php?delete=" . $value->getID() . "'>X</a>" . "</td>");
+                echo("<td>" . "Edit" . "</td>");
+                echo("</tr>");
+            }
+        ?>
+    </table>
+    <form action="/components/game.php" method="post">
+        <label for="name">Titre</label>
+        <input type="text" name="name" id="name">
 
-<form action="/components/game.php" method="post">
-    <label for="name">Titre</label>
-    <input type="text" name="name" id="name">
+        <label for="station">Plateforme</label>
+        <select name="station" id="">
+            <?php
+                $statement = $manager->getAllStations();
+                foreach ($statement as $key => $value) {
+                    # code...
+                    
+                    echo("<option name='" . $value["station"] . "'>" . $value["station"] . "</option>");
+                    
+                }
+            ?>
+        </select>
+        
+        <label for="format">Genre</label>
+        <select name="format" id="">
+            <?php
+                $statement = $manager->getAllFormats();
+                foreach ($statement as $key => $value) {
+                    # code...
+                    
+                    echo("<option name='" . $value["format"] . "'>" . $value["format"] . "</option>");
+                    
+                }
+            ?>
+        </select>
 
-    <label for="station">Plateforme</label>
-    <input type="text" name="station" id="station">
-    
-    <label for="format">Genre</label>
-    <input type="text" name="format" id="format">
-
-    <input type="submit" value="Confirmer">
-</form>
+        <input type="submit" value="Confirmer">
+    </form>
+</main>

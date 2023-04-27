@@ -1,0 +1,50 @@
+main {
+    padding-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+main form {
+    background-color: #ffffff44;
+    height: 400px;
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    right: 0;
+}
+
+main form input[type="text"] {
+    margin-bottom: 30px;
+    outline: none;
+}
+
+main form input[type="submit"] {
+    
+    background-image: linear-gradient(
+        90deg,
+        blue,
+        rgb(45, 118, 255),
+        rgb(0, 255, 255),
+        rgb(95, 255, 255)
+    );
+    background-position-x: -515px;
+    background-repeat: no-repeat;
+    background-size: 800px;
+    color: #FFFFFF;
+    border: none;
+    transition: background-position-x ease-out 800ms, border-radius linear 300ms;
+}
+
+main form input[type="submit"]:hover{
+    cursor: pointer;
+    border-radius: 20px;
+    background-position-x: 0px;
+}
+
+main form input {
+    width: 70%;
+    font-size: 20px;
+    padding: 5px 0;
+}

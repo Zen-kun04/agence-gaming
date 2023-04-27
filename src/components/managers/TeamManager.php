@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__ . "/../classes/teamC.php");
 class TeamManager extends DBManager
 {
     public function getAllTeams()
@@ -14,6 +15,14 @@ class TeamManager extends DBManager
             $teams[] = $team;
         }
         return $teams;
+    }
+
+    public function getTeamByID(int $id) {
+        $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Team WHERE id = ?");
+        $prepare->execute([
+            $id
+        ]);
+        return $data;
     }
 
     public function createTeam(string $name, string $descritpion)
