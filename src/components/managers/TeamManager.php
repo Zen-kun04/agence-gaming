@@ -16,11 +16,11 @@ class TeamManager extends DBManager
         return $teams;
     }
 
-    public function createTeam(string $name, string $descritpion)
+    public function createTeam(string $name, string $description)
     {
         $prepare = $this->getConnection()->prepare("INSERT INTO `Team` (name, description) VALUES (:name, :description); ");
         $prepare->bindValue(":name", $name);
-        $prepare->bindValue(":descritpion", $descritpion);
+        $prepare->bindValue(":description", $description);
         $prepare->execute();
     }
 }
