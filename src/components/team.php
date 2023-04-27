@@ -1,8 +1,8 @@
 <?php
 
 include_once('./navbar.php');
-include_once('./managers/TeamManager.php');
-include_once("./managers/DBManager.php");
+include_once(__DIR__ . "/managers/TeamManager.php");
+include_once(__DIR__ . "/managers/DBManager.php");
 include_once("./classes/teamC.php");
 $manager = new TeamManager();
 
