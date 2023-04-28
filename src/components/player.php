@@ -23,12 +23,16 @@
         
     }else if(!empty($_GET["delete"])){
         $id = $_GET["delete"];
-        $manager->deletePlayerById($id);
+        if($manager->playerExist($id)){
+            $manager->deletePlayerById($id);
+        }
+        
     }
 
 ?>
 
 <link rel="stylesheet" href="../style.css">
+<main>
 <table>
     <tr>
         <th>#</th>
@@ -58,7 +62,7 @@
             echo("<td>" . $value->getCity() . "</td>");
             echo("<td>" . $team_manager->getTeamByID($value->getTeamID())->getName() . "</td>");
             echo("<td>" . $game_manager->getGameByID($value->getGameID())->getName() . "</td>");
-            echo("<td>" . "X" . "</td>");
+            echo("<td>" . "<a href='/components/player.php?delete=" . $value->getID() . "'>X</a>" . "</td>");
             echo("<td>" . "<a href='/components/edit.php?player=" . $value->getID() . "'>Edit</a>" . "</td>");
             echo("</tr>");
         }
@@ -102,3 +106,4 @@
 
     <input type="submit" value="Confirmer">
 </form>
+</main>
