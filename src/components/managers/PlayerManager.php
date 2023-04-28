@@ -35,6 +35,24 @@
             return !empty($data->fetch());
         }
 
+        public function getPlayerByID(int $id) {
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Player WHERE id = ?;");
+            $prepare->execute([
+                $id
+            ]);
+            foreach ($data as $key => $value) {
+                $player = new Player();
+                $player->setId($value["id"]);
+                $player->setFirstName($value["first_name"]);
+                $player->setSecondName($value["second_name"]);
+                $player->setCity($value["city"]);
+                $player->setTeamID($value["team_id"]);
+                $player->setGameID($value["game_id"]);
+                return $player;
+            }
+            return null;
+        }
+
         public function createPlayer(string $first_name, string $second_name, string $city, int $team_id, int $game_id) {
             // echo("Team: " . $team_id);
             // echo("Game: " . $game_id);
