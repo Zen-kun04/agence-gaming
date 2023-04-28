@@ -5,5 +5,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/managers/TeamManager.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/gameC.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/teamC.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/playerC.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/competitionC.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/managers/compet_manager.php");
 ?>
