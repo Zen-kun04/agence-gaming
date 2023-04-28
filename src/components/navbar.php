@@ -1,7 +1,8 @@
 <header class="header">
     <button class="accueilBtn"><a href="../">Accueil</a></button>
     
-
+    <!-- ceci est un commentaire -->
+    <!-- encore un commentire -->
     <nav class="navbar">
         <ul>
             <li id="game"><a href="/components/game.php">Game</a></li>
