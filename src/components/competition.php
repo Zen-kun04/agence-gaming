@@ -51,4 +51,8 @@
 
         <input type="submit" value="Envoyer">
     </form>
+
+                        <!-- ANIMATE CSS BACKGROUND -->
+                        <?php require_once("../background.php"); ?>
+                        
 </main>
