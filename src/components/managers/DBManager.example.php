@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     class DBManager {
         private $mysql;
 
@@ -18,4 +18,4 @@
             return $this->mysql;
         }
     }
-?>
+?> -->

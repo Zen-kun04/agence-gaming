@@ -19,6 +19,24 @@
             return $competitions;
         }
 
+        public function getCompetByID(int $id) {
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Competition WHERE id = ?;");
+            $prepare->execute([
+                $id
+            ]);
+            foreach ($data as $key => $value) {
+                $competition = new Competition();
+                $competition->set_iD($value["id"]);
+                $competition->set_name($value["name"]);
+                $competition->set_description($value["description"]);
+                $competition->set_city($value["city"]);
+                $competition->set_format($value["format"]);
+                $competition->set_cash_prize($value["cash_prize"]);
+
+                return $competition;
+            }
+            return null;
+        }
 
         public function createCompet(string $name, string $description, string $city, string $format, int $cash_prize) {
             $prepare = $this->getConnection()->prepare("INSERT INTO `Competition` (name, description, city, format, cash_prize) VALUES

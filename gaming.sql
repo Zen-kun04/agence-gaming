@@ -121,4 +121,9 @@ INSERT INTO `Sponsor` (`brand`, `team_id`) VALUES
 ('Logitech G', 3),
 ('HyperX', 2);
 -- Finir/Sauvegarder le script
+
+INSERT INTO team_competition (team_id, competition_id) VALUES
+(1, 2),
+(2, 3),
+(3, 1);
 COMMIT;
