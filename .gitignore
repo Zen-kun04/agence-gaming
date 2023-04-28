@@ -1,3 +1,4 @@
 .vscode
 src/components/managers/DBManager.php
+src/components/managers/DBManager.example.php
 root.session.sql

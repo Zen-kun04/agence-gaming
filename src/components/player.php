@@ -32,6 +32,7 @@
 ?>
 
 <link rel="stylesheet" href="../style.css">
+<main>
 <table>
     <tr>
         <th>#</th>
@@ -108,3 +109,4 @@
 
                     <!-- ANIMATE CSS BACKGROUND -->
                     <?php require_once("../background.php"); ?>
+</main>
