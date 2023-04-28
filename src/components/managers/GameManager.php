@@ -23,10 +23,6 @@
                 $id
             ]);
 
-
-
-
-
             foreach ($data as $key => $value) {
                 $game = new Game();
                 $game->setID($value["id"]);
@@ -36,6 +32,16 @@
                 return $game;
             }
             return null;
+        }
+
+        public function updateGame(Game $game){
+            $prepare = $this->getConnection()->prepare("UPDATE Game SET name = ?, station = ?, format = ? WHERE id = ?");
+            $prepare->execute([
+                $game->getName(),
+                $game->getStation(),
+                $game->getFormat(),
+                $game->getID()
+            ]);
         }
 
         public function getAllStations(){
@@ -49,11 +55,11 @@
 
         public function getAllFormats(){
             $prepare = $this->getConnection()->query("SELECT DISTINCT format FROM `Game`");
-            $stations = [];
+            $formats = [];
             foreach ($prepare as $key => $value) {
-                $stations[] = $value;
+                $formats[] = $value;
             }
-            return $stations;
+            return $formats;
         }
 
         public function deleteGameById(int $id) {

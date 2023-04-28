@@ -2,7 +2,6 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
     require_once("./navbar.php");
 ?>
-<main>
     <?php
         if(!empty($_GET["player"])){
             $player_manager = new PlayerManager();
@@ -121,7 +120,6 @@
             }
         }
     ?>
-</main>
 <script src="playerE.js"></script>
         
     

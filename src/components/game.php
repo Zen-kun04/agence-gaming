@@ -50,13 +50,15 @@
             $statement = $manager->getAllGames();
             foreach ($statement as $key => $value) {
                 # code...
+
+                $game_id = $value->getID();
                 echo("<tr>");
                 echo("<th>" . $value->getID() . "</th>");
                 echo("<td>" . $value->getName() . "</td>");
                 echo("<td>" . $value->getStation() . "</td>");
                 echo("<td>" . $value->getFormat() . "</td>");
-                echo("<td>" . "<a href='/components/game.php?delete=" . $value->getID() . "'>X</a>" . "</td>");
-                echo("<td>" . "Edit" . "</td>");
+                echo("<td>" . "<a href='/components/game.php?delete=" . $game_id . "'>X</a>" . "</td>");
+                echo("<td>" . "<a href='/components/edit.php?game=" . $game_id . "'>Edit</a>" . "</td>");
                 echo("</tr>");
             }
         ?>
