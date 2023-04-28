@@ -35,14 +35,16 @@ CREATE TABLE IF NOT EXISTS `Player`(
     second_name VARCHAR(50) NOT NULL,
     city VARCHAR(70) NOT NULL,
     team_id INT(10),
-    game_id INT(10) NOT NULL,
+    game_id INT(10),
     PRIMARY KEY (id),
     CONSTRAINT fk_Player_Team
         FOREIGN KEY (team_id)
-        REFERENCES Team(id),
+        REFERENCES Team(id)
+        ON DELETE SET NULL,
     CONSTRAINT fk_Player_Game
         FOREIGN KEY (game_id)
         REFERENCES Game(id)
+        ON DELETE SET NULL
 );
 
 -- Créer une table si elle n'existe pas
@@ -54,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `Sponsor`(
     CONSTRAINT fk_Sponsor_Team
     FOREIGN KEY (team_id)
     REFERENCES Team(id)
+    ON DELETE SET NULL
     
 );
 
@@ -71,15 +74,17 @@ CREATE TABLE IF NOT EXISTS `Competition`(
 -- Créer une table si elle n'existe pas
 CREATE TABLE IF NOT EXISTS `team_competition`(
     id INTEGER NOT NULL AUTO_INCREMENT,
-    team_id INT(10) NOT NULL,
-    competition_id INT(10) NOT NULL,
+    team_id INT(10),
+    competition_id INT(10),
     PRIMARY KEY (id),
     CONSTRAINT fk_team_competition_Team
     FOREIGN KEY (team_id)
-    REFERENCES Team(id),
+    REFERENCES Team(id)
+    ON DELETE SET NULL,
     CONSTRAINT fk_team_competition_Competition
     FOREIGN KEY (competition_id)
     REFERENCES Competition(id)
+    ON DELETE SET NULL
 );
 
 INSERT INTO `Game` (`name`,`station`, `format`) VALUES

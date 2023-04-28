@@ -7,10 +7,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
 $manager = new SponsorManager();
 
 
-if (!empty($_POST["sponsor"])) {
-    $sponsor = $_POST["sponsor"];
-
-    $manager->createSponsor($brand);
+if (!empty($_POST["brand"])) {
+    $sponsor = $_POST["brand"];
+    // echo("Sponsor brand: " . $sponsor);
+    $manager->createSponsor($sponsor);
 } else if (!empty($_GET["delete"])) {
     $id = $_GET["delete"];
     $manager->deleteSponsorById($id);
