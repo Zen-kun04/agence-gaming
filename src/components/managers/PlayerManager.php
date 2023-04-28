@@ -53,6 +53,18 @@
             return null;
         }
 
+        public function updatePlayer(Player $player) {
+            $prepare = $this->getConnection()->prepare("UPDATE Player SET first_name = ?, second_name = ?, city = ?, team_id = ?, game_id = ? WHERE id = ?");
+            $prepare->execute([
+                $player->getFirstName(),
+                $player->getSecondName(),
+                $player->getCity(),
+                $player->getTeamID(),
+                $player->getGameID(),
+                $player->getID()
+            ]);
+        }
+
         public function createPlayer(string $first_name, string $second_name, string $city, int $team_id, int $game_id) {
             // echo("Team: " . $team_id);
             // echo("Game: " . $game_id);
