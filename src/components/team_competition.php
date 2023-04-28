@@ -1,65 +1,15 @@
 <?php
-    include_once("./navbar.php");
+    require_once("./navbar.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
     $manager = new TCManager;
-class TeamCompetition {
-        
-    private $id;
-    private $team_id;
-    private $team_name;
-    private $compet_id;
-    private $compet_name;
 
 
-    public function get_iD() {
-        return $this->id;
-    }
+if(!empty($_POST["team"]) && !empty($_POST["competition"])){
 
-    public function set_iD(int $id) {
-        $this->id = $id;
-    }
-
-    public function get_team_iD() {
-        return $this->team_id;
-    }
-
-    public function set_team_iD(string $team_id) {
-        $this->team_id = $team_id;
-    }
-
-    public function get_team_name() {
-        return $this->team_name;
-    }
-
-    public function set_team_name(string $team_name) {
-        $this->team_name = $team_name;
-    }
-
-    public function get_compet_iD() {
-        return $this->compet_id;
-    }
-
-    public function set_compet_iD(string $compet_id) {
-        $this->compet_id = $compet_id;
-    }
-
-    public function get_compet_name() {
-        return $this->compet_name;
-    }
-
-    public function set_compet_name(string $compet_name) {
-        $this->compet_name = $compet_name;
-    }
-}
-
-
-if(!empty($_POST["team"]) && !empty($_POST["tc"])){
-
-    $team_id = $_POST["team"];
-    $tc_id = $_POST["tc"];
-
+    $team_id = intval($_POST["team"]);
+    $tc_id = intval($_POST["competition"]);
     $manager->createTC(intval($team_id), intval($tc_id));
-    
+    exit();
     
 }
 ?>
@@ -73,7 +23,21 @@ if(!empty($_POST["team"]) && !empty($_POST["tc"])){
                 <th>Competition</th>
             </tr>
             <!-- Add rows here -->
-            
+            <?php
+
+            $team_manager = new TeamManager();
+            $compet_manager = new CompetManager();
+
+                foreach ($manager->get_tc() as $key => $value) {
+                    echo("<tr>");
+                    // ...
+                    echo("<td>" . $key + 1 . "</td>");
+                    echo("<td value='" . $value->get_team_iD() . "'>" . $team_manager->getTeamByID($value->get_team_iD())->getName() . "</td>");
+                    echo("<td value='" . $value->get_compet_iD() . "'>" . $compet_manager->getCompetByID($value->get_compet_iD())->get_name() . "</td>");
+
+                    echo("</tr>");
+                }
+            ?>
         </table>
 
         <form action="/components/team_competition.php" method="post">
@@ -89,15 +53,15 @@ if(!empty($_POST["team"]) && !empty($_POST["tc"])){
                 ?>
             </select>
             
-            <label for="team_competition">Team Competition</label>
-            <select name="team_competition" id="team_competition">
+            <label for="competition">Competition</label>
+            <select name="competition" id="competition">
                 <?php
                 
-                    $tc_manager = new TCManager();
-                    $tc = $tc_manager->get_tc();
-                    foreach ($tc as $key => $value) {
-                        $name = $value->get_compet_name();
-                        echo("<option value='" . $value->get_compet_iD() . "'>" . $name . "</option>");
+                    $compet_manager = new CompetManager();
+                    $compet = $compet_manager->GetAllCompet();
+                    foreach ($compet as $key => $value) {
+                        $name = $value->get_name();
+                        echo("<option value='" . $value->get_iD() . "'>" . $name . "</option>");
                     }
                 ?>
             </select>
