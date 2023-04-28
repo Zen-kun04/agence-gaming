@@ -48,4 +48,7 @@ if (!empty($_POST["sponsor"])) {
         <input type="submit" value="Confirmer">
     </form>
 
+                        <!-- ANIMATE CSS BACKGROUND -->
+                        <?php require_once("../background.php"); ?>
+                        
 </main>
