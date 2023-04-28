@@ -68,4 +68,8 @@ if(!empty($_POST["team"]) && !empty($_POST["competition"])){
 
         <input type="submit" value="Confirmer">
     </form>
+
+                        <!-- ANIMATE CSS BACKGROUND -->
+                        <?php require_once("../background.php"); ?>
+                        
 </main>

@@ -50,3 +50,7 @@ if (!empty($_POST["name"]) && !empty($_POST["description"])) {
 
     <input type="submit" value="Confirmer">
 </form>
+
+
+                    <!-- ANIMATE CSS BACKGROUND -->
+                    <?php require_once("../background.php"); ?>
