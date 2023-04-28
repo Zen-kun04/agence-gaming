@@ -32,6 +32,7 @@
 ?>
 
 <link rel="stylesheet" href="../style.css">
+<main>
 <table>
     <tr>
         <th>#</th>
@@ -105,3 +106,4 @@
 
     <input type="submit" value="Confirmer">
 </form>
+</main>
