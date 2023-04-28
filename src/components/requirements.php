@@ -12,4 +12,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/TCClass.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/competitionC.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/managers/compet_manager.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/managers/AuthDBManager.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/managers/LoginManager.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/components/classes/loginC.php");
 ?>
