@@ -1,5 +1,10 @@
 <?php
-
+    require_once("./components/requirements.php");
+    $login_manager = new LoginManager();
+    if(!$login_manager->checkAuthenticatedRequest()){
+        header("Location:/components/login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>

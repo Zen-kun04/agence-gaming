@@ -1,7 +1,11 @@
 <?php
     // http://localhost/components/edit.php?game=1
     require_once($_SERVER['DOCUMENT_ROOT'] . "/components/requirements.php");
-    
+    $login_manager = new LoginManager();
+if(!$login_manager->checkAuthenticatedRequest()){
+    header("Location:/components/login.php");
+    exit();
+}
 
 
     if(!empty($_GET["game"])){
