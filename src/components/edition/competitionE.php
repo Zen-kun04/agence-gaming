@@ -5,25 +5,28 @@ if(!$login_manager->checkAuthenticatedRequest()){
     header("Location:/components/login.php");
     exit();
 }
+    require_once("./navbar.php");
+?>
+<?php
+        if(!empty($_GET["Competition"])){
+            $competition_id = intval($_GET["Competition"]);
+            $competition_manager = new CompetManager();
+            $competition = $competition_manager->getCompetByID($competition_id);
+            if(!empty($_POST["name"]) && 
+            !empty($_POST["description"]) && 
+            !empty($_POST["city"]) &&
+            !empty($_POST["format"]) &&
+            !empty($_POST["cash_prize"]) ){
+                $new_compet = new Competition();
+                $new_compet->set_iD($competition_id);
+                $new_compet->set_name($_POST["name"]);
+                $new_compet->set_description($_POST["description"]);
+                $new_compet->set_city($_POST["city"]);
+                $new_compet->set_format($_POST["format"]);
+                $new_compet->set_cash_prize($_POST["cash_prize"]);
+                $competition_manager->updateCompet($new_compet);
+            }
 
-
-    if(!empty($_GET["game"])){
-        $game_id = intval($_GET["game"]);
-        $game_manager = new GameManager();
-        $game = $game_manager->getGameByID($game_id);
-        if(!empty($_POST["name"]) && 
-        !empty($_POST["station"]) && 
-        !empty($_POST["format"])){
-            $new_game = new Game();
-            $new_game->setID($game_id);
-            $new_game->setName($_POST["name"]);
-            $new_game->setStation($_POST["station"]);
-            $new_game->setFormat($_POST["format"]);
-            $game_manager->updateGame($new_game);
-
-            header("Location:/components/game.php");
-            exit();
-        }
         $html_table =
         "<table>\n"
         . "<tr>\n"
@@ -37,90 +40,76 @@ if(!$login_manager->checkAuthenticatedRequest()){
         . "</th>\n"
 
         . "<th>\n"
-        . "Station"
+        . "Description"
+        . "</th>\n"
+
+        . "<th>\n"
+        . "City"
         . "</th>\n"
 
         . "<th>\n"
         . "Format"
         . "</th>\n"
 
+        . "<th>\n"
+        . "Cash Prize"
+        . "</th>\n"
+
         . "</tr>\n"
         . "";
-
-        
-
-        $html_second_table =
-        "<tr>"
-        . "<th>"
-        . $game->getID()
-        . "</th>"
-        . "<td>"
-        . $game->getName()
-        . "</td>"
-        . "<td>"
-        . $game->getStation()
-        . "</td>"
-        . "<td>"
-        . $game->getFormat()
-        . "</td>"
-        . "</tr>"
-        . "</table>";
-
-        echo($html_table);
-        echo($html_second_table);
-
-        $stations = "";
-
-        foreach ($game_manager->getAllStations() as $key => $value) {
-            if($value["station"] !== $game->getStation()){
-                $stations .= "<option value='" . $value["station"] . "'>"
-                . $value["station"]
-                . "</option>";
-            }
-        }
-
-        $formats = "";
-
-        foreach ($game_manager->getAllFormats() as $key => $value) {
             
-            if($value["format"] !== $game->getFormat()){
-                $formats .= "<option value='" . $value["format"] . "'>"
-                . $value["format"]
-                . "</option>";
+            $compet_id = $_GET['competition'];
+            $competition_manager = new CompetManager();
+            $compet = $competition_manager->getCompetByID($compet_id);
+
+            $html = "<tr>"
+            . "<th>"
+            . $compet->get_iD()
+            . "</th>"
+            . "<td>"
+            . $compet->get_name()
+            . "</td>"
+            . "<td>"
+            . $compet->get_description()
+            . "</td>"
+            . "<td>"
+            . $compet->get_city()
+            . "</td>"
+            . "<td>"
+            . $compet->get_format()
+            . "</td>"
+            . "<td>"
+            . $compet->get_cash_prize()
+            . "</td>"
+            . "</tr>"
+            . "</table>";
+
+            $html_form =
+              "<form action='/components/edit.php?competition=" . $compet_id . "' method='post'>"
+            . "<label for='name'>Name</label>"
+            . "<input type='text' name='name' value='" . $compet->get_name() . "'>"
+
+            . "<label for='description'>Description</label>"
+            . "<input type='text' name='description' value='" . $compet->get_description() . "'>"
+
+            . "<label for='description'>Description</label>"
+            . "<input type='text' name='description' value='" . $compet->get_city() . "'>"
+
+            . "<label for='description'>Description</label>"
+            . "<input type='text' name='description' value='" . $compet->get_format() . "'>"
+
+            . "<label for='description'>Description</label>"
+            . "<input type='text' name='description' value='" . $compet->get_cash_prize() . "'>"
+
+            . "<input type='submit'>"
+            . "</form>";
+
+            $competition_manager = new CompetManager();
+            if ($competition_manager->competExist(intval($_GET["competition"]))) {
+                echo($html_table);
+                echo($html);
+                echo($html_end_table);
+                echo($html_form);
             }
         }
-
-        $html_form = 
-        "<form action='/components/edit.php?game=" . $game->getID() . "' method='post'>"
-        . "<label for='name'>"
-        . "Name"
-        . "</label>"
-        . "<input type='text' name='name' value='" . $game->getName() . "'>"
-
-        . "<label for='station'>"
-        . "Station"
-        . "</label>"
-        . "<select name='station'>"
-        . "<option value='" . $game->getStation() . "'>"
-        . $game->getStation()
-        . "</option>" 
-        . $stations
-        . "</select>"
-
-        . "<label for='format'>"
-        . "Format"
-        . "</label>"
-        . "<select name='format'>"
-        . "<option value='" . $game->getFormat() . "'>"
-        . $game->getFormat()
-        . "</option>" 
-        . $formats
-        . "</select>"
-
-        . "<input type='submit'>"
-        . "</form>";
-
-        echo($html_form);
-
-    }
 ?>

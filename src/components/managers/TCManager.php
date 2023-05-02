@@ -19,6 +19,30 @@
         }
 
 
+        public function deleteTCById(int $id) {
+            $prepare = $this->getConnection()->prepare("DELETE FROM `team_competition` WHERE id = ?");
+            $prepare->execute([
+                $id
+            ]);
+        }
+
+        public function getTCByID(int $id) {
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM team_competition WHERE id = ?;");
+            $prepare->execute([
+                $id
+            ]);
+            foreach ($data as $key => $value) {
+                $tc = new TeamCompetition();
+                $tc->set_iD($value["id"]);
+                $tc->set_compet_iD($value["team_id"]);
+                $tc->set_compet_name($value["team_id"]);
+                $tc->set_team_iD($value["game_id"]);
+                $tc->set_team_name($value["team_id"]);
+                return $tc;
+            }
+            return null;
+        }
+
         public function createTC(int $team_id, int $compet_id) {
 
             $prepare = $this->getConnection()->prepare("INSERT INTO `team_competition` (team_id, competition_id)

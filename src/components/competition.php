@@ -55,7 +55,7 @@ if(!empty($_POST["name"]) && !empty($_POST["description"]) && !empty($_POST["cit
                 echo("<td>" . $value->get_format() . "</td>");
                 echo("<td>" . $value->get_cash_prize() . "</td>");
                 echo("<td>" . "<a href='/components/competition.php?delete=" . $compet_id . "'>X</a>" . "</td>");
-                echo("<td>" . "<a href='/components/edit.php?game=" . $compet_id . "'>Edit</a>" . "</td>");
+                echo("<td>" . "<a href='/components/edit.php?competition=" . $compet_id . "'>Edit</a>" . "</td>");
                 echo("</tr>");
             }
         ?>
