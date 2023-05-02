@@ -49,11 +49,12 @@
             return null;
         }
 
-        public function updateSponsor (Team $team) {
+        public function updateTeam (Team $team) {
             $prepare = $this->getConnection()->prepare("UPDATE Team SET `name` = ?, `description` = ? WHERE id = ?");
             $prepare->execute([
                 $team->getName(),
-                $team->getDescription()
+                $team->getDescription(),
+                $team->getId()
             ]);
         }
 
