@@ -51,7 +51,8 @@
         $prepare = $this->getConnection()->prepare("UPDATE Sponsor SET brand = ?, team_id = ? WHERE id = ?");
         $prepare->execute([
             $sponsor->getBrand(),
-            $sponsor->get_team_id()
+            $sponsor->get_team_id(),
+            $sponsor->getId()
         ]);
     }
 

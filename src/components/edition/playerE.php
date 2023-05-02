@@ -26,7 +26,7 @@ if(!$login_manager->checkAuthenticatedRequest()){
                 $new_player->setGameID(intval($_POST["game"]));
                 $new_player->setTeamID(intval($_POST["team"]));
                 $player_manager->updatePlayer($new_player);
-                header("Location:/components/player.php");
+                header("Location:/components/team.php");
                 exit();
             }
             $html_table = "<table>\n"
