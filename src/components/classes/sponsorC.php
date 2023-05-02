@@ -35,7 +35,7 @@ class Sponsor
     {
         return $this->team_id;
     }
-    public function set_team_id(int | null $argument_team_id)
+    public function set_team_id(?int $argument_team_id)
     {
         $this->team_id = $argument_team_id;
     }
