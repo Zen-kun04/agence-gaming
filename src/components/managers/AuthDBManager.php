@@ -11,7 +11,7 @@
                         dbname=Auth;
                         charset=utf8;',
                         'root',
-                        'root'
+                        'marvel'
                     );
                 } catch (PDOException $th) {
                     echo("Auth DB Error: " . $th->getMessage());

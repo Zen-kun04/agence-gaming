@@ -32,14 +32,18 @@ if(!empty($_POST["team"]) && !empty($_POST["competition"])){
 
             $team_manager = new TeamManager();
             $compet_manager = new CompetManager();
-
+            $tc = new TeamCompetition();
+            $tc_id = $tc->get_iD();
                 foreach ($manager->get_tc() as $key => $value) {
+
+
+
                     echo("<tr>");
                     // ...
                     echo("<td>" . $key + 1 . "</td>");
                     echo("<td value='" . $value->get_team_iD() . "'>" . $team_manager->getTeamByID($value->get_team_iD())->getName() . "</td>");
                     echo("<td value='" . $value->get_compet_iD() . "'>" . $compet_manager->getCompetByID($value->get_compet_iD())->get_name() . "</td>");
-
+                    echo("<td>" . "<a href='/components/team_competition.php?delete=" . $tc_id . "'>X</a>" . "</td>");
                     echo("</tr>");
                 }
             ?>
