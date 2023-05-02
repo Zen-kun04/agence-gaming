@@ -1,7 +1,6 @@
 <?php 
     class CompetManager extends DBManager {
-        public function GetAllCompet()
-        {
+        public function GetAllCompet() {
             $prepare = $this->getConnection()->query("SELECT * FROM `Competition`");
             $competitions = [];
             foreach ($prepare as $compet_data) {
@@ -18,6 +17,23 @@
             }
             return $competitions;
         }
+
+        public function deleteCompetById(int $id) {
+            $prepare = $this->getConnection()->prepare("DELETE FROM `Competition` WHERE id = ?");
+            $prepare->execute([
+                $id
+            ]);
+        }
+
+        public function competExist(int $id) {
+            $data = $prepare = $this->getConnection()->prepare("SELECT * FROM `Competition` WHERE id = ?");
+            $prepare->execute([
+                $id
+            ]);
+
+            return !empty($data->fetch());
+        }
+
 
         public function getCompetByID(int $id) {
             $data = $prepare = $this->getConnection()->prepare("SELECT * FROM Competition WHERE id = ?;");
@@ -38,9 +54,25 @@
             return null;
         }
 
-        public function createCompet(string $name, string $description, string $city, string $format, int $cash_prize) {
+        public function updateCompet(Competition $compet) {
+            $prepare = $this->getConnection()->prepare("UPDATE Competition SET name = ?, description = ?, city = ?, format = ?, cash_prize = ? WHERE id = ?");
+            $prepare->execute([
+                $compet->get_name(),
+                $compet->get_city(),
+                $compet->get_description(),
+                $compet->get_format(),
+                $compet->get_cash_prize(),
+                $compet->get_iD()
+            ]);
+        }
+
+
+        public function createCompet(string $name, string $description, string $city, string $format, int $cash_prize) 
+        {
+
             $prepare = $this->getConnection()->prepare("INSERT INTO `Competition` (name, description, city, format, cash_prize) VALUES
             (:name, :description, :city, :format, :cash_prize);");
+
             $prepare->bindValue(":name", $name);
             $prepare->bindValue(":description", $description);
             $prepare->bindValue(":city", $city);
